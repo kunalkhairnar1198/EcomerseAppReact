@@ -4,7 +4,7 @@ const category = [
         name: 'fashion'
     },
     {
-        image: 'https://cdn-icons-png.flaticon.com/256/11833/11833323.png',
+        image: 'https://img.icons8.com/?size=100&id=52574&format=png&color=000000',
         name: 'shirt'
     },
     {
