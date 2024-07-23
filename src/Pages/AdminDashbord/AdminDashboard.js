@@ -2,9 +2,14 @@ import { Tab, TabList, TabPanel, Tabs } from "react-tabs";
 import ProductDetail from "../../Component/AdminProducts/ProductDetail";
 import OrderDetail from "../../Component/AdminProducts/OrderDetail";
 import UserDetail from "../../Component/AdminProducts/UserDetail";
+import { useSelector } from "react-redux";
 
 const AdminDashboard = () => {
+    const TotalProductCount = useSelector(state=> state.admin_products.count)
     const data = JSON.parse(localStorage.getItem('users'))
+
+    
+
     return (
         <div>
             <div className="top mb-1 px-5 mt-1">
@@ -55,7 +60,7 @@ const AdminDashboard = () => {
                                     </svg>
 
                                 </div>
-                                <h2 className="title-font font-medium text-3xl text-white fonts1" >10</h2>
+                                <h2 className="title-font font-medium text-3xl text-white fonts1" >{TotalProductCount}</h2>
                                 <p className=" text-white  font-bold" >Total Products</p>
                             </div>
                         </Tab>
