@@ -33,6 +33,8 @@ const categoryList = [
 
 const AddProductPage = () => {
   
+  const navigate = useNavigate()
+  
   const [productDetail, setProductDetails] = useState({
     title:'',
     price:'',
@@ -84,7 +86,6 @@ const AddProductPage = () => {
     })
   }
   
-  const navigate = useNavigate()
   const addProductHandler =async(e)=>{
     e.preventDefault()
 

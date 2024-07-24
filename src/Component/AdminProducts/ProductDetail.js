@@ -1,18 +1,21 @@
 import { useEffect } from "react";
-import { NavLink } from "react-router-dom";
+import { NavLink, useNavigate } from "react-router-dom";
 import {useDispatch, useSelector} from 'react-redux'
 import { fetchProductData } from "../../Store/adminProuct-slice/admin-product-slice";
 const ProductDetail = () => {
   
     const AdminAllProducts  = useSelector(state => state.admin_products.AllProducts)
     const dispatch = useDispatch()
+    const navigate = useNavigate()
     // console.log(AdminAllProducts)
   
     useEffect(()=>{
         dispatch(fetchProductData())
     },[dispatch])
    
-   
+    const editHandler =(id)=>{
+      navigate(`/updateproductpage/${id}`)
+    }
 
     return (
         <div>
@@ -61,7 +64,9 @@ const ProductDetail = () => {
                 <td className="h-12 px-6 text-md transition duration-300 border-t border-l first:border-l-0 border-pink-100 text-slate-500">
                   { item.date }
                 </td>
-                <td className="h-12 px-6 text-md transition duration-300 border-t border-l first:border-l-0 border-pink-100 text-slate-500 text-green-500 cursor-pointer">
+                <td
+                onClick={()=>editHandler(item.id)} 
+                className="h-12 px-6 text-md transition duration-300 border-t border-l first:border-l-0 border-pink-100 text-slate-500 text-green-500 cursor-pointer">
                   Edit
                 </td>
                 <td className="h-12 px-6 text-md transition duration-300 border-t border-l first:border-l-0 border-pink-100 text-slate-500 text-red-500 cursor-pointer">

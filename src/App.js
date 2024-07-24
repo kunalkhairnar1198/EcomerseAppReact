@@ -42,7 +42,7 @@ function App() {
           <AddProductPage/>
         </ProtectedRouteForAdmin>
       }/> 
-      <Route path="/updateproductpage" element={
+      <Route path="/updateproductpage/:id" element={
         <ProtectedRouteForAdmin>
           <UpdateProductPage/>
         </ProtectedRouteForAdmin>
