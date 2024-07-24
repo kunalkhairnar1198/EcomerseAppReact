@@ -1,6 +1,6 @@
 import {createSlice} from '@reduxjs/toolkit';
 import { fireDB } from "../../firebase/FirebaseConfig";
-import { collection, doc, onSnapshot, orderBy, query, QuerySnapshot, setDoc } from 'firebase/firestore';
+import { collection, deleteDoc, doc, onSnapshot, orderBy, query, QuerySnapshot, setDoc } from 'firebase/firestore';
 
 const initialUiState ={
     AllProducts:[],
@@ -15,12 +15,20 @@ const ProductSlice = createSlice({
         state.count = action.payload.length
         console.log(state.AllProducts)
       },
+
       updateProducts(state,action){
         const updatedProduct = action.payload;
         const existingProductsIndex = state.AllProducts.findIndex((product)=> product.id === updatedProduct.id)
         if(existingProductsIndex >= 0){
           state.AllProducts[existingProductsIndex] = updatedProduct;
         }
+      },
+
+      deleteProduct(state, action){
+          const updatedId = action.payload;
+          const deleteProduct = state.AllProducts.filter((item)=> item.id !== updatedId)
+          state.AllProducts = deleteProduct;
+          state.count = state.AllProducts.length
       }
     }
 })
@@ -61,6 +69,17 @@ export const updateProduct=(Product)=>{
       }
 
     }
+}
+
+export const deleteProducts =(id)=>{
+  return async(dispatch)=>{
+    try {
+      await deleteDoc(doc(fireDB,'products',id))
+      dispatch(AdminProductsActions.deleteProduct(id))
+    } catch (error) {
+      console.log(error)
+    }
+  }
 }
 
 export const AdminProductsActions = ProductSlice.actions;

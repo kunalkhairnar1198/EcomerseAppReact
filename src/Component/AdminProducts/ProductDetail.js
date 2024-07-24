@@ -1,7 +1,7 @@
 import { useEffect } from "react";
 import { NavLink, useNavigate } from "react-router-dom";
 import {useDispatch, useSelector} from 'react-redux'
-import { fetchProductData } from "../../Store/adminProuct-slice/admin-product-slice";
+import { deleteProducts, fetchProductData } from "../../Store/adminProuct-slice/admin-product-slice";
 const ProductDetail = () => {
   
     const AdminAllProducts  = useSelector(state => state.admin_products.AllProducts)
@@ -15,6 +15,10 @@ const ProductDetail = () => {
    
     const editHandler =(id)=>{
       navigate(`/updateproductpage/${id}`)
+    }
+    
+    const deleteProduct =(id)=>{
+     dispatch(deleteProducts(id))
     }
 
     return (
@@ -66,10 +70,12 @@ const ProductDetail = () => {
                 </td>
                 <td
                 onClick={()=>editHandler(item.id)} 
-                className="h-12 px-6 text-md transition duration-300 border-t border-l first:border-l-0 border-pink-100 text-slate-500 text-green-500 cursor-pointer">
+                className="h-12 px-6 text-md transition duration-300 border-t border-l first:border-l-0 border-slate-100 text-green-500 cursor-pointer">
                   Edit
                 </td>
-                <td className="h-12 px-6 text-md transition duration-300 border-t border-l first:border-l-0 border-pink-100 text-slate-500 text-red-500 cursor-pointer">
+                <td
+                onClick={()=>deleteProduct(item.id)} 
+                className="h-12 px-6 text-md transition duration-300 border-t border-l first:border-l-0 border-slate-100 text-red-500 cursor-pointer">
                   Delete
                 </td>
               </tr>
