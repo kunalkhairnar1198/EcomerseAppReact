@@ -1,8 +1,18 @@
 import React from 'react'
-import { Link } from 'react-router-dom'
+import { Link, useParams } from 'react-router-dom'
 import Layout from '../../../Component/Layout/Layout'
+import { useSelector } from 'react-redux'
 
 const Productdetail = () => {
+    const {id} = useParams()
+    const productsData = useSelector(state => state.admin_products.AllProducts)
+    console.log(productsData)
+
+    const findProduct = productsData.find((item)=> item.id === id)
+    console.log(findProduct)
+
+    const {category,description, price,productImageUrl, title} = findProduct;
+
   return (
     <Layout>
             <div className="container px-5 py-28 mx-auto">
@@ -10,11 +20,11 @@ const Productdetail = () => {
                 <img
                 alt="ecommerce"
                 className="lg:w-1/3 md:w-1/3 sm:w-3/4 w-full object-cover object-center rounded"
-                src="https://i.pinimg.com/736x/e4/61/f2/e461f2246b6ad93e2099d98780626396.jpg"
+                src={productImageUrl}
                 />
                 <div className="lg:w-1/2 w-full lg:pl-10 lg:py-6 mt-6 lg:mt-0">
-                <h2 className="text-sm title-font text-gray-500 tracking-widest">BRAND NAME</h2>
-                <h1 className="text-gray-900 text-3xl title-font font-medium mb-1">The Catcher in the Rye</h1>
+                <h2 className="text-sm title-font text-gray-500 tracking-widest">{category}</h2>
+                <h1 className="text-gray-900 text-3xl title-font font-medium mb-1">{title}</h1>
                 <div className="flex mb-4">
                     <span className="flex ml-3 pl-3 py-2 border-l-2 border-gray-200 space-x-2">
                     <Link href="#" className="text-gray-500">
@@ -56,7 +66,7 @@ const Productdetail = () => {
                     </span>
                 </div>
                 <p className="leading-relaxed">
-                    Fam locavore kickstarter distillery. Mixtape chillwave tumeric sriracha taximy chia microdosing tilde DIY. XOXO fam indxgo juiceramps cornhole raw denim forage brooklyn. Everyday carry +1 seitan poutine tumeric. Gastropub blue bottle austin listicle pour-over, neutra jean shorts keytar banjo tattooed umami cardigan.
+                    {description}
                 </p>
                 <div className="flex mt-6 items-center pb-5 border-b-2 border-gray-100 mb-5">
                     <div className="flex ml-6 items-center">
@@ -85,7 +95,7 @@ const Productdetail = () => {
                     </div>
                 </div>
                 <div className="flex">
-                    <span className="title-font font-medium text-2xl text-gray-900">$58.00</span>
+                    <span className="title-font font-medium text-2xl text-gray-900">${price}</span>
                     <button className="flex ml-auto text-white bg-indigo-500 border-0 py-2 px-6 focus:outline-none hover:bg-indigo-600 rounded">Add To Cart</button>
                     <button className="flex ml-3 text-white bg-indigo-500 border-0  py-2 px-6 focus:outline-none hover:bg-indigo-600 rounded">Buy</button>
                     <button className="rounded-full w-10 h-10 bg-gray-200 p-0 border-0 inline-flex items-center justify-center text-gray-500 ml-4">

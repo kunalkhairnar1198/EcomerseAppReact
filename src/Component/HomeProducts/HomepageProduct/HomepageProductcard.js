@@ -89,8 +89,8 @@ const HomepageProductcard = () => {
        dispatch(fetchProductData())
     },[])
 
-    const switchHandler =()=>{
-        navigate('/productdetail')
+    const switchHandler =(id)=>{
+        navigate(`/productdetail/${id}`)
     }
 
     return (
@@ -103,15 +103,15 @@ const HomepageProductcard = () => {
                 <div className="container px-5 py-5 mx-auto">
                     <div className="flex flex-wrap -m-4">
                         {productData.map((item, index) => {
-                            const { image, title, price } = item
+                            const { productImageUrl, title, price } = item
                             return (
                                 <div key={index} className="p-4 w-full md:w-1/4">
                                     <div className="h-full border border-gray-300 rounded-xl overflow-hidden shadow-md cursor-pointer">
                                             <img
                                                 className="lg:h-80  h-96 w-full"
-                                                src={image}
+                                                src={productImageUrl}
                                                 alt="blog"
-                                                onClick={switchHandler}
+                                                onClick={()=>switchHandler(item.id)}
                                             />
                                         <div className="p-6">
                                             <h2 className="tracking-widest text-xs title-font font-medium text-gray-400 mb-1">
