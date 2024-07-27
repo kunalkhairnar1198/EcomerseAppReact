@@ -90,7 +90,7 @@ const AllProducts = () => {
     
     return (
         <Layout>
-    <div className="py-8 mt-10">
+        <div className="py-8 mt-10">
             <div className="">
                 <h1 className=" text-center mb-5 text-2xl font-semibold">All Products</h1>
             </div>
@@ -118,7 +118,7 @@ const AllProducts = () => {
                                                 ₹{price}
                                             </h1>
                                             <div className="flex justify-center ">
-                                                <button className=" bg-pink-500 hover:bg-pink-600 w-full text-white py-[4px] rounded-lg font-bold">
+                                                <button className=" bg-slate-500 hover:bg-slate-600 w-full text-white py-[4px] rounded-lg font-bold">
                                                     Add to cart
                                                 </button>
                                             </div>

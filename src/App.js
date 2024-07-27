@@ -14,6 +14,7 @@ import UpdateProductPage from "./Pages/AdminDashbord/UpdateProductPage";
 import React from "react";
 import { ProtectedRouteForUser } from "./Component/ProtectedRoute/ProtectedRouteForUser";
 import { ProtectedRouteForAdmin } from "./Component/ProtectedRoute/ProtectedRouteForAdmin";
+import Categorypage from "./Pages/Category/Categorypage";
 
 function App() {
   
@@ -26,7 +27,8 @@ function App() {
       <Route path='/signup' element={<Signup/>}/>
       <Route path='/productdetail/:id' element={<Productdetail/>}/>
       <Route path='/all-products' element={<AllProducts/>}/>
-      <Route path='/cart-page' element={<CartPage/>}/>  
+      <Route path='/cart-page' element={<CartPage/>}/> 
+      <Route path="/category/:categoryname" element={<Categorypage/>}/> 
       <Route path='/userdashbord' element={
         <ProtectedRouteForUser>
           <Userdashbord />
