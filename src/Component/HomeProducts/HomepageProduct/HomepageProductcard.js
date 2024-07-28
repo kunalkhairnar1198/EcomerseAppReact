@@ -2,6 +2,7 @@ import { useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { useNavigate } from "react-router-dom";
 import { fetchProductData } from "../../../Store/adminProuct-slice/admin-product-slice";
+import { cartSliceActions } from "../../../Store/cart-Product-slice/cart-slice";
 
 // productData 
 // const productData = [
@@ -93,6 +94,10 @@ const HomepageProductcard = () => {
         navigate(`/productdetail/${id}`)
     }
 
+    const addToCartHandler =(item)=>{
+        dispatch(cartSliceActions.addItemCart(item))
+    }
+
     return (
         <div className="mt-10">
             <div className="">
@@ -125,7 +130,9 @@ const HomepageProductcard = () => {
                                             </h1>
 
                                             <div className="flex justify-center ">
-                                                <button className=" bg-slate-500 hover:bg-slate-600 w-full text-white py-[4px] rounded-lg font-bold">
+                                                <button 
+                                                onClick={()=>addToCartHandler(item)}
+                                                className=" bg-slate-500 hover:bg-slate-600 w-full text-white py-[4px] rounded-lg font-bold">
                                                     Add To Cart
                                                 </button>
                                             </div>

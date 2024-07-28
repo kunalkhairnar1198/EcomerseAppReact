@@ -1,14 +1,15 @@
 import { Link, useNavigate } from 'react-router-dom';
 import { FaSearch, FaShoppingCart } from 'react-icons/fa'; 
 import image from '../assets/app-store.png';
-import { useDispatch } from 'react-redux';
+import { useDispatch, useSelector } from 'react-redux';
 import { AuthActions } from '../../Store/auth-slice/auth-slice';
 
 const MainNavigation = () => {
   const dispatch = useDispatch()
 
   const isAuthenticateduser =  JSON.parse(localStorage.getItem('users'))
-
+  const cartDatalength = useSelector((state)=> state.cart.totalQuantity)
+  console.log(cartDatalength)
 
 
   const logoutHandler =()=>{
@@ -67,7 +68,7 @@ const MainNavigation = () => {
               <FaShoppingCart className="w-6 h-6" />
               <span className="sr-only">Cart</span>
               <div className="absolute top-0 right-0 -mt-1 -mr-1 flex items-center justify-center h-5 w-5 bg-secondary text-red-100 bg-red-600 rounded-full  text-xs font-medium">
-               0
+               {cartDatalength}
               </div>
           </Link>
         </div>

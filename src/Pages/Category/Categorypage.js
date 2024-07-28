@@ -1,16 +1,23 @@
 import React from 'react'
 import { useNavigate, useParams } from 'react-router-dom'
 import Layout from '../../Component/Layout/Layout'
-import { useSelector } from 'react-redux'
+import { useDispatch, useSelector } from 'react-redux'
+import { cartSliceActions } from '../../Store/cart-Product-slice/cart-slice'
 
 const Categorypage = () => {
 
     const {categoryname} = useParams()
     const navigate = useNavigate()
+    const dispatch = useDispatch()
     const productData = useSelector(state => state.admin_products.AllProducts)
     const filterdata =  productData.filter((item)=> item.category.includes(categoryname))
     console.log(filterdata)
     console.log(categoryname)
+
+    const addToCartHandler =(item)=>{
+        dispatch(cartSliceActions.addItemCart(item))
+    }
+
   return (
     <Layout>
          <div className="mt-36">
@@ -54,7 +61,9 @@ const Categorypage = () => {
                                                                 ₹{price}
                                                             </h1>
                                                             <div className="flex justify-center ">
-                                                                <button className=" bg-slate-500 hover:bg-slate-600 w-full text-white py-[4px] rounded-lg font-bold">
+                                                                <button 
+                                                                onClick={()=>addToCartHandler(item)}
+                                                                className=" bg-slate-500 hover:bg-slate-600 w-full text-white py-[4px] rounded-lg font-bold">
                                                                     Add to cart
                                                                 </button>
                                                             </div>

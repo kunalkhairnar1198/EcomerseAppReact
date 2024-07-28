@@ -3,6 +3,7 @@ import Layout from "../../../Component/Layout/Layout";
 import { useDispatch, useSelector } from "react-redux";
 import { useEffect } from "react";
 import { fetchProductData } from "../../../Store/adminProuct-slice/admin-product-slice";
+import { cartSliceActions } from "../../../Store/cart-Product-slice/cart-slice";
 
 // const productData = [
 //     {
@@ -87,6 +88,10 @@ const AllProducts = () => {
     useEffect(()=>{
         dispatch(fetchProductData())
     },[])
+
+    const addToCartHandler =(item)=>{
+        dispatch(cartSliceActions.addItemCart(item))
+    }
     
     return (
         <Layout>
@@ -118,7 +123,9 @@ const AllProducts = () => {
                                                 ₹{price}
                                             </h1>
                                             <div className="flex justify-center ">
-                                                <button className=" bg-slate-500 hover:bg-slate-600 w-full text-white py-[4px] rounded-lg font-bold">
+                                                <button
+                                                onClick={()=>addToCartHandler(item)}
+                                                className=" bg-slate-500 hover:bg-slate-600 w-full text-white py-[4px] rounded-lg font-bold">
                                                     Add to cart
                                                 </button>
                                             </div>
