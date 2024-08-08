@@ -3,6 +3,8 @@ import Layout from '../../Component/Layout/Layout'
 import { useDispatch, useSelector } from 'react-redux'
 import { FaRegTrashAlt } from 'react-icons/fa'
 import { cartSliceActions } from '../../Store/cart-Product-slice/cart-slice'
+import BuyNowModal from '../../Component/BuyNow/BuyNowModal'
+import { LoaderActions } from '../../Store/Ui-Slice/ui-slice'
 
 const products = [
     {
@@ -46,7 +48,8 @@ const products = [
 const CartPage = () => {
     const dispatch = useDispatch()
     const cartData = useSelector(state => state.cart.cartProducts);
-    console.log(cartData);
+    const setopen = useSelector(state => state.ui.open)
+    console.log(cartData, setopen);
 
     const cartItemTotal = cartData.map(item => item.qunatity).reduce((prevValue, currValue) => prevValue + currValue, 0);
 
@@ -60,6 +63,10 @@ const CartPage = () => {
 
     const deleteCartHandler =(item)=>{
         dispatch(cartSliceActions.removeCartItem(item))
+    }
+
+    const CheckOut =()=>{
+        dispatch(LoaderActions.isOpen())
     }
 
     return (
@@ -131,7 +138,9 @@ const CartPage = () => {
                                                     </button>
                                                 </div>
                                                 <div className="ml-6 flex text-sm">
-                                                    <button type="button" className="flex items-center space-x-1 px-2 py-1 pl-0">
+                                                    <button type="button" 
+                                                    onClick={()=>deleteCartHandler(product.id)}
+                                                    className="flex items-center space-x-1 px-2 py-1 pl-0">
                                                         <FaRegTrashAlt className="text-gray-500" />
                                                         <span className="text-xs font-medium text-red-500">Remove</span>
                                                     </button>
@@ -175,13 +184,17 @@ const CartPage = () => {
                                         <dd className="text-base font-medium text-gray-900">₹{totalAmount + deliveryCharges}</dd>
                                     </div>
                                 </dl>
-                                <div className="px-2 pb-4 font-medium text-green-700">
+                                <div className="px-2 pb-4 font-medium text-black-700">
                                     <div className="flex gap-4 mb-6">
                                         <button
+                                            type="button"
+                                            onClick={CheckOut}
                                             className="w-full px-4 py-3 text-center text-gray-100 bg-slate-800 border border-transparent hover:border-dark-700 hover:text-dark-700 hover:bg-slate-500 rounded-xl"
                                         >
                                             Checkout
                                         </button>
+                                        {setopen && <BuyNowModal/>}
+                                        
                                     </div>
                                 </div>
                             </div>

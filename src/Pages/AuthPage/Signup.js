@@ -111,13 +111,8 @@ const Signup = () => {
   
   return (
     <Modal className="max-w-2xl mx-auto" onClick={toggleModal}>
-      {/* {!uiLoader && <Loader/>} */}
-      <div
-        id="authentication-modal"
-        className="fixed inset-0  z-50 flex items-center justify-center overflow-y-auto overflow-x-hidden"
-      >
         <div className="relative w-full max-w-md mx-auto p-4 h-auto">
-          <div className="bg-white rounded-lg shadow-lg dark:bg-gray-700">
+          <div className="rounded-lg shadow-lg dark:bg-gray-700">
             <div className="flex justify-end p-2">
               <button
                 type="button"
@@ -237,8 +232,8 @@ const Signup = () => {
             </form>
           </div>
         </div>
-      </div>
-    </Modal>
+        </Modal>
+     
   );
 };
 

@@ -91,9 +91,9 @@ const Signin = () => {
 
   return (
         <Modal className="max-w-2xl mx-auto" onClick={toggleModal}>
-         <div id="authentication-modal" className="fixed inset-0 z-50 flex items-center justify-center overflow-y-auto overflow-x-hidden h-modal md:h-full">
+         <div  className="fixed inset-0 z-50 flex items-center justify-center overflow-y-auto overflow-x-hidden h-modal md:h-full">
             <div className="relative w-full max-w-md px-4 h-full md:h-auto">
-                <div className="bg-white rounded-lg shadow relative dark:bg-gray-700">
+                <div className="rounded-lg shadow relative dark:bg-gray-700">
                 <div className="flex justify-end p-2">
                     <button
                     type="button"
@@ -176,7 +176,6 @@ const Signin = () => {
             </div>
             </div>
         </Modal>
-
   )
 }
 

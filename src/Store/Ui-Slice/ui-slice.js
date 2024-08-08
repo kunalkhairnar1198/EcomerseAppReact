@@ -2,6 +2,7 @@ import {createSlice} from '@reduxjs/toolkit';
 
 const initialUiState ={
     isVisible:true,
+    open: false,
 }
 
 const LoaderSlice = createSlice({
@@ -10,6 +11,10 @@ const LoaderSlice = createSlice({
     reducers:{
         isLoadingData(state, action){
             state.isVisible = action.state
+        },
+        isOpen(state, action){
+            state.open = !state.open
+            console.log(state.open)
         }
     }
 })

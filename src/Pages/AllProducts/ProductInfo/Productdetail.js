@@ -1,10 +1,12 @@
 import React from 'react'
 import { Link, useParams } from 'react-router-dom'
 import Layout from '../../../Component/Layout/Layout'
-import { useSelector } from 'react-redux'
+import { useDispatch, useSelector } from 'react-redux'
+import { cartSliceActions } from '../../../Store/cart-Product-slice/cart-slice'
 
 const Productdetail = () => {
     const {id} = useParams()
+    const dispatch = useDispatch()
     const productsData = useSelector(state => state.admin_products.AllProducts)
     console.log(productsData)
 
@@ -12,6 +14,10 @@ const Productdetail = () => {
     console.log(findProduct)
 
     const {category,description, price,productImageUrl, title} = findProduct;
+
+    const addToCart =(item)=>{
+      dispatch(cartSliceActions.addItemCart(item))
+    }
 
   return (
     <Layout>
@@ -94,7 +100,9 @@ const Productdetail = () => {
           </div>
           <div className="flex items-center">
             <span className="title-font font-medium text-2xl text-gray-900">${price}</span>
-            <button className="flex ml-auto text-white bg-indigo-500 border-0 py-2 px-6 focus:outline-none hover:bg-indigo-600 rounded">
+            <button
+            onClick={()=>addToCart(findProduct)}
+            className="flex ml-auto text-white bg-indigo-500 border-0 py-2 px-6 focus:outline-none hover:bg-indigo-600 rounded">
               Add To Cart
             </button>
             <button className="flex ml-3 text-white bg-indigo-500 border-0 py-2 px-6 focus:outline-none hover:bg-indigo-600 rounded">
