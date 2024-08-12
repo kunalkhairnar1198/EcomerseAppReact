@@ -1,7 +1,7 @@
 import useGetAllOrder from "../../Hooks/useGetAllOrder";
 
 const OrderDetail = () => {
-    const {orders} = useGetAllOrder()
+    const {orders, deleteProduct} = useGetAllOrder()
 
     return (
         <div>
@@ -88,7 +88,7 @@ const OrderDetail = () => {
                             {order.email}
                             </td>
                             <td
-                            // onClick={()=>deleteProduct(item.id)} 
+                            onClick={()=>deleteProduct(order.id)} 
                             className="h-12 px-6 text-md transition duration-300 border-t border-l first:border-l-0 border-slate-100 text-red-500 cursor-pointer">
                             Delete
                             </td> 
