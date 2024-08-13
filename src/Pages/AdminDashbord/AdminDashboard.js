@@ -4,12 +4,14 @@ import OrderDetail from "../../Component/AdminProducts/OrderDetail";
 import UserDetail from "../../Component/AdminProducts/UserDetail";
 import { useSelector } from "react-redux";
 import useGetAllOrder from "../../Hooks/useGetAllOrder";
+import useGetUser from "../../Hooks/useGetUser";
 
 const AdminDashboard = () => {
     const TotalProductCount = useSelector(state=> state.admin_products.count)
     const data = JSON.parse(localStorage.getItem('users'))
 
     const {orders} = useGetAllOrder()
+    const {user} = useGetUser()
 
     console.log(orders)
     
@@ -121,7 +123,7 @@ const AdminDashboard = () => {
                                     </svg>
 
                                 </div>
-                                <h2 className="title-font font-medium text-3xl text-white fonts1" >10</h2>
+                                <h2 className="title-font font-medium text-3xl text-white fonts1" >{user.length}</h2>
                                 <p className=" text-white  font-bold" >Total User</p>
                             </div>
                         </Tab>
