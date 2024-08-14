@@ -1,8 +1,9 @@
 import { Link, useNavigate } from 'react-router-dom';
-import { FaSearch, FaShoppingCart } from 'react-icons/fa'; 
+import {  FaShoppingCart } from 'react-icons/fa'; 
 import image from '../assets/app-store.png';
 import { useDispatch, useSelector } from 'react-redux';
 import { AuthActions } from '../../Store/auth-slice/auth-slice';
+import SearchBar from '../SearchBar/SearchBar';
 
 const MainNavigation = () => {
   const dispatch = useDispatch()
@@ -30,14 +31,7 @@ const MainNavigation = () => {
         </div>
         
         <div className="flex items-center gap-4 flex-1 justify-center w-full md:w-auto order-3 md:order-none">
-          <div className="relative w-full max-w-md">
-            <FaSearch className="absolute left-3 top-1/2 transform -translate-y-1/2 w-5 h-5 text-gray-400" />
-            <input
-              type="search"
-              placeholder="Search products..."
-              className="w-full pl-10 pr-4 py-2 rounded-md border border-gray-300 bg-white focus:border-blue-500 focus:outline-none"
-            />
-          </div>
+          <SearchBar/>
         </div>
 
         <div className="flex items-center gap-4 order-2 md:order-none">
