@@ -1,4 +1,6 @@
 import { createSlice } from "@reduxjs/toolkit"
+import { doc, setDoc } from "firebase/firestore";
+import { fireDB } from "../../firebase/FirebaseConfig";
 
 const cartState ={
     cartProducts:[],
@@ -52,6 +54,27 @@ reducers:{
     }
 }
 })
+
+export const sendCart = (cart) => {
+    return async (dispatch, getState) => {
+        dispatch(cartSliceActions.addItemCart(cart))
+        const updatedCart = getState().cart;
+        const sendRequest = async () => {
+            try {
+                // Save the entire cart to Firestore
+                await setDoc(doc(fireDB, 'cart', 'user-cart-id'), updatedCart);
+            } catch (error) {
+                throw new Error('Sending cart data failed');
+            }
+        };
+
+        try {
+            await sendRequest();
+        } catch (error) {
+            console.log(error);
+        }
+    }
+}
 
 export const cartSliceActions= CartSlice.actions;
 export default CartSlice.reducer;

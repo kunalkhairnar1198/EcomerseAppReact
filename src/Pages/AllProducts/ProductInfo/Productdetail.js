@@ -2,7 +2,7 @@ import React from 'react'
 import { Link, useParams } from 'react-router-dom'
 import Layout from '../../../Component/Layout/Layout'
 import { useDispatch, useSelector } from 'react-redux'
-import { cartSliceActions } from '../../../Store/cart-Product-slice/cart-slice'
+import { cartSliceActions, sendCart } from '../../../Store/cart-Product-slice/cart-slice'
 
 const Productdetail = () => {
     const {id} = useParams()
@@ -17,6 +17,8 @@ const Productdetail = () => {
 
     const addToCart =(item)=>{
       dispatch(cartSliceActions.addItemCart(item))
+
+      dispatch(sendCart(item))
     }
 
   return (
